@@ -1,0 +1,139 @@
+@use "./variables" as *;
+@use "./animations";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #efefef;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  height: 42px;
+  padding: 0 18px;
+  background-color: $blue;
+  color: white;
+
+  &:hover {
+    background-color: $bluedarker;
+  }
+  &:active {
+    background-color: $bluedarkest;
+  }
+}
+
+.content {
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+
+  .game-container {
+    padding: 16px;
+    text-align: center;
+    background-color: #fff;
+    display: inline-block;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+    h1 {
+      margin-bottom: 16px;
+    }
+
+    #game-grid {
+      display: inline-grid;
+      grid-auto-flow: column;
+      grid-template-rows: 1fr 1fr 1fr;
+
+      .card {
+        height: 190px;
+        width: 130px;
+        overflow: hidden;
+        background-color: #fff;
+        margin: 8px;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.3);
+          transform: scale(1.02);
+          transition: transform 0.15s ease-in;
+        }
+
+        &.selected {
+          transform: scale(1.03);
+          box-shadow: 0px 0px 8px 0 rgba(0, 0, 0, 0.3);
+          border: 3px solid red;
+        }
+
+        &.show-hint {
+          border: 3px solid green;
+        }
+
+        &.shake {
+          border: 3px solid red;
+          animation: shake 0.15s;
+          animation-iteration-count: 2;
+        }
+
+        &.remove-card {
+          animation: removeCard 300ms ease-out;
+        }
+
+        .shape-img {
+          height: 45px;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .score-container {
+    background-color: #fff;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+
+    .sets-found {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .game-help {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-top: 16px;
+    }
+
+    .cards-left {
+      text-align: center;
+    }
+  }
+}

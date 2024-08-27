@@ -193,14 +193,17 @@ export class Game {
       };
     });
 
-    // this.addCardsToDOM();
     this._selection = [];
   }
 
   private getHint() {
     const set = this.checkIfSetExists();
+
     if (set.length) {
-      set.forEach(({ id }) => {
+      set.forEach(({ id }, i) => {
+        // Only highlight two cards of the set, skip the first iteration
+        if(i === 0) return;
+        
         document.getElementById(id)!.classList.add("show-hint");
         setTimeout(() => {
           document.getElementById(id)!.classList.remove("show-hint");
@@ -213,6 +216,7 @@ export class Game {
 
   private checkIfSetExists(): Card[] {
     let cards: Card[] = [];
+
     for (let cardI = 0; cardI < this.tableCards.length; cardI++) {
       if (cards.length) break;
 

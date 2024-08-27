@@ -5,14 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && concurrently \"tsc -w\" \"lite-server\"",
-    "build": "tsc"
+    "start": "tsc && concurrently \"npm run watch:ts\" \"npm run watch:scss\" \"lite-server\"",
+    "build:ts": "tsc",
+    "build:scss": "sass --no-source-map sass/styles.scss dist/style.css",
+    "watch:ts": "tsc --watch",
+    "watch:scss": "sass --watch sass/styles.scss dist/style.css",
+    "build": "build:ts && build:scss"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.2",
     "lite-server": "^2.6.1",
+    "sass": "^1.77.8",
     "typescript": "^5.5.4"
   }
 }

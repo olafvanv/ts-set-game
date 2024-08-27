@@ -55,11 +55,3 @@ export class Card {
     return imgs;
   }
 }
-
-/**
- * 
-      <span class="number">${this.number}</span>
-      <span class="color">${this.colorName}</span>
-      <span class="fill">${this.fillName}</span>
-      <span class="shape">${this.shapeName}</span>
- */
